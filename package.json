@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "webtest": "npx cypress run --browser chrome --spec 'cypress/e2e/webtesting/*'",
+    "orangetest": "npx cypress run --browser chrome --spec 'cypress/e2e/webtesting/orangeHRM.cy.js'"
   },
   "author": "",
   "license": "ISC",
