@@ -10,7 +10,28 @@
 //
 //
 // -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
+Cypress.Commands.add('login', (username, password) => {
+    cy.get('[data-test="username"]').type(username)
+    cy.get('[data-test="password"]').type(password)
+    cy.get('[data-test="login-button"]').click()
+})
+
+Cypress.Commands.add('ketik', (locator, value) => {
+    cy.get(locator)
+    .should('be.visible')
+    .type(value)
+})
+
+Cypress.Commands.add('klik', (locator) => {
+    cy.get(locator)
+    .should('be.visible')
+    .click()
+})
+
+Cypress.Commands.add('verifyContain', (locator, value) => {
+    cy.get(locator)
+    .should('contain.text', value)
+})
 //
 //
 // -- This is a child command --
