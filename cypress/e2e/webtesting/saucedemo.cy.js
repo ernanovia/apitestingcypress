@@ -1,6 +1,24 @@
+import loginPage from "../../support/pageObject/userPage"
+const userr = require('../../fixtures/users.json')
+
 describe('web testing', () => {
   beforeEach(()=>{
     cy.visit('')
+  })
+
+  it.only('success login using POM', () => {
+    loginPage.inputUsername(userr[0].username)
+    loginPage.inputPassword(userr[0].password)
+    loginPage.clickloginButton()
+    loginPage.verifyProduct(userr[0].title)
+  })
+
+  it('success login with fixtures', () => {
+    cy.fixture('users.json').then((user)=> {
+      const datauser = user[0];
+      cy.login(datauser.username, datauser.password)
+    cy.get('.title').should('have.text', 'Products')
+    });
   })
 
   it('success login with custom login', () => {
