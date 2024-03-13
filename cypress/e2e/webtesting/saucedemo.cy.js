@@ -6,7 +6,16 @@ describe('web testing', () => {
     cy.visit('')
   })
 
-  it.only('success login using POM', () => {
+  it('multiple failed login', () => {
+    cy.fixture('fail-user.json').then((user) => {
+      user.failed_login.forEach((datauser) => {
+        cy.login(datauser.username, datauser.password)
+        cy.get('[data-test="error"]').should('be.visible')
+      })
+    })
+  })
+
+  it('success login using POM', () => {
     loginPage.inputUsername(userr[0].username)
     loginPage.inputPassword(userr[0].password)
     loginPage.clickloginButton()
